@@ -3,7 +3,7 @@ This repository contains a trial task for the netipar company, using these stack
 - Laravel 8
 - Bootstrap 5
 
-
+#
 
 ### The task is to create a phonebook with the features below
 - Create a name
@@ -11,3 +11,8 @@ This repository contains a trial task for the netipar company, using these stack
 - Unlimited number of phone numbers can be attached (1 phone number / 1 person, optional)
 - Can attach a photo
 - Can enter a home address and mailing address. (If the same, you only need to fill it once)
+
+#
+
+### Database Schema
+![Screenshot](db_schema.jpg)
