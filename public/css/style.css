@@ -1,0 +1,107 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F9FAFB;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main .row {
+    width: 100%;
+}
+
+.phonebook {
+    background-color: #fff;
+    padding: 1.5rem 1.5rem;
+    border: 1px solid #f2f4f9;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 10px 0 rgb(183 192 206 / 20%);
+    -webkit-box-shadow: 0 0 10px 0 rgb(183 192 206 / 20%);
+    position: relative;
+}
+
+.phonebook .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    z-index: 999;
+}
+
+.phonebook .body {
+    overflow: auto;
+    max-height: 70vh;
+}
+.phonebook table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.phonebook .header p {
+    text-transform: uppercase;
+    font-size: .875rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.phonebook thead {
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.phonebook thead tr th {
+    text-transform: uppercase;
+    font-size: .8rem;
+    font-weight: 500;
+    margin: 0;
+
+}
+
+.phonebook tbody tr {
+    position: relative;
+}
+
+.phonebook tbody tr:after {
+    position: absolute;
+    content: "";
+    background-color: #212529;
+    width: 100px;
+    height: 1px;
+    z-index: 3;
+    bottom: 0;
+    left: calc(50% - 50px);
+}
+
+.phonebook tbody td .user_image {
+    border-radius: 50%;
+}
+
+.phonebook tbody td p {
+    font-size: .8rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.phonebook tbody td .edit-icon,
+.phonebook tbody td .delete-icon {
+    text-decoration: none;
+}
+
+.phonebook tbody td .edit-icon img,
+.phonebook tbody td .delete-icon img {
+    width: 17px;
+}
+
+.phonebook tbody td .edit-icon img {
+    filter: invert(44%) sepia(56%) saturate(3442%) hue-rotate(219deg) brightness(100%) contrast(102%);
+}
+
+.phonebook tbody td .delete-icon img {
+    filter: invert(32%) sepia(46%) saturate(3663%) hue-rotate(326deg) brightness(102%) contrast(105%);
+}
