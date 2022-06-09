@@ -16,9 +16,13 @@ return new class extends Migration
         Schema::dropIfExists('address');
         Schema::create('address', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('address_type_id')->constrained('address_type')->onDelete('cascade');
-            $table->string('address');
-            $table->string('mailing_address');
+            $table->foreignId('contact_id')->nullable()->constrained('contact')->onDelete('cascade');
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->integer('zip')->nullable();
+            $table->string('mailing_address')->nullable();
+            $table->string('mailing_city')->nullable();
+            $table->string('mailing_zip')->nullable();
             $table->timestamps();
         });
     }

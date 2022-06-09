@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('phonebook.index');
+Route::get('/', [ContactController::class, 'index'])->name('phonebook.index');
+Route::get('/create', [ContactController::class, 'create'])->name('phonebook.create');
+Route::post('/create', [ContactController::class, 'store'])->name('phonebook.store');
+Route::get('/edit', [ContactController::class, 'edit'])->name('phonebook.edit');

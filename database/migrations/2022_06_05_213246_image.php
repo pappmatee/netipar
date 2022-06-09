@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::dropIfExists('image');
         Schema::create('image', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('contact_id')->constrained('contact')->onDelete('cascade');
+            $table->foreignId('contact_id')->nullable()->constrained('contact')->onDelete('cascade');
             $table->string('file_name');
             $table->timestamps();
         });

@@ -1,6 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #F9FAFB;
+    background-color: #000000;
 }
 
 .main {
@@ -11,16 +11,24 @@ body {
 
 .main .row {
     width: 100%;
+    justify-content: center;
+}
+
+.phonebook .row {
+    width: 100%;
+    justify-content: left;
+    align-items: center;
 }
 
 .phonebook {
-    background-color: #fff;
+    background-color: #111113;
     padding: 1.5rem 1.5rem;
-    border: 1px solid #f2f4f9;
-    border-radius: 0.25rem;
-    box-shadow: 0 0 10px 0 rgb(183 192 206 / 20%);
-    -webkit-box-shadow: 0 0 10px 0 rgb(183 192 206 / 20%);
+    border: 1px solid #1F2029;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px 0 rgb(255 255 255 / 20%);
+    -webkit-box-shadow: 0 0 10px 0 rgb(255 255 255 / 10%);
     position: relative;
+    color: #fff;
 }
 
 .phonebook .header {
@@ -43,13 +51,20 @@ body {
 
 .phonebook .header p {
     text-transform: uppercase;
-    font-size: .875rem;
-    font-weight: 500;
+    font-size: 1.2rem;
+    font-weight: 800;
     margin: 0;
+    letter-spacing: 2px;
+}
+
+.phonebook .header button {
+    background-color: #2C2B30;
+    color: #fff;
+    padding: 0.4rem 1.3rem;
 }
 
 .phonebook thead {
-    background-color: #fff;
+    background-color: #111113;
     position: sticky;
     top: 0;
     z-index: 99;
@@ -58,9 +73,10 @@ body {
 .phonebook thead tr th {
     text-transform: uppercase;
     font-size: .8rem;
-    font-weight: 500;
+    font-weight: 800;
     margin: 0;
-
+    color: #fff;
+    letter-spacing: 2px;
 }
 
 .phonebook tbody tr {
@@ -71,21 +87,25 @@ body {
     position: absolute;
     content: "";
     background-color: #212529;
-    width: 100px;
+    width: 300px;
     height: 1px;
     z-index: 3;
     bottom: 0;
-    left: calc(50% - 50px);
+    left: calc(50% - 150px);
 }
 
 .phonebook tbody td .user_image {
     border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
 }
 
 .phonebook tbody td p {
     font-size: .8rem;
     font-weight: 500;
     margin: 0;
+    color: #fff;
 }
 
 .phonebook tbody td .edit-icon,
@@ -104,4 +124,50 @@ body {
 
 .phonebook tbody td .delete-icon img {
     filter: invert(32%) sepia(46%) saturate(3663%) hue-rotate(326deg) brightness(102%) contrast(105%);
+}
+
+.phonebook .body label {
+    text-transform: uppercase;
+    font-size: .8rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.phonebook .body input[type="text"],
+.phonebook .body input[type="email"],
+.phonebook .body input[type="file"],
+.phonebook .body input[type="number"]{
+    border: 1px solid #2C2B30;
+    height: 32px;
+    font-size: 0.8rem;
+    background-color: #111113;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.phonebook .add-email,
+.phonebook .add-phone{
+    text-decoration: none;
+    background-color: #6571FF;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.phonebook .add-email:hover,
+.phonebook .add-phone:hover{
+    background-color: #6528E0;
+}
+
+.phonebook .body #address-check {
+    background-color: #111113;
+    border-color: #6571FF;
+}
+
+.phonebook .body .save-btn {
+    padding: 0.4rem 1.3rem;
 }

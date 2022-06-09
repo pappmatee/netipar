@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::dropIfExists('phone');
         Schema::create('phone', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('contact_id')->constrained('contact')->onDelete('cascade');
-            $table->string('phone')->unique();
+            $table->foreignId('contact_id')->nullable()->constrained('contact')->onDelete('cascade');
+            $table->string('phone')->unique()->nullable();
             $table->timestamps();
         });
     }

@@ -27,6 +27,6 @@ class Contact extends Model
 
     public function addresses()
     {
-        return $this->hasManyThrough(Address::class, AddressType::class);
+        return $this->hasOne(Address::class);
     }
 }

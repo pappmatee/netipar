@@ -9,6 +9,7 @@ class Email extends Model
 {
     use HasFactory;
     protected $table = "email";
+    protected $fillable = ['email'];
 
     public function contact()
     {
