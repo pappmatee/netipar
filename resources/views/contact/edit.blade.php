@@ -17,47 +17,81 @@
     <div class="row">
         <div class="col-6">
             <div class="phonebook">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="list-unstyled mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="header">
                     <p>Edit contact</p>
                     <a href="{{ route('phonebook.index') }}">
-                        <button class="btn btn-sm shadow-none">Viev all contacts</button>
+                        <button class="btn btn-sm shadow-none">View all contacts</button>
                     </a>
                 </div>
-                <div class="body">
+                <form action="{{ route('phonebook.update', $contact->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('POST')
+                    <div class="body">
                     <div class="mb-3 row">
                         <label for="username" class="col-sm-3 col-form-label">Full Name</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control shadow-none" id="username" value="">
+                            <input type="text" class="form-control shadow-none" id="full-name" name="full_name" value="{{ $contact->full_name }}" required>
                         </div>
                     </div>
                     <div class="emails mb-3">
-                        <div class="mb-1 row">
-                            <label for="email" class="col-sm-3 col-form-label">E-mail address</label>
-                            <div class="col-sm-5">
-                                <input type="email" class="form-control shadow-none" id="email" value="" placeholder="Email address" name="email[]">
-                            </div>
-                            <a class="add-email col-sm-1">
-                                +
-                            </a>
-                        </div>
+                        @foreach($contact->emails as $email)
+                            @if($loop->first)
+                                <div class="mb-1 row">
+                                    <label for="email" class="col-sm-3 col-form-label">E-mail address</label>
+                                    <div class="col-sm-5">
+                                        <input type="email" class="form-control shadow-none" id="email" value="{{ $email->email }}" placeholder="Email address" name="email[]" required>
+                                    </div>
+                                    <a class="add-email col-sm-1">
+                                        +
+                                    </a>
+                                </div>
+                            @else
+                                <div class="mb-1 row">
+                                    <label for="email" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-5">
+                                        <input type="email" class="form-control shadow-none" id="email" value="{{ $email->email }}" placeholder="Email address" name="email[]" required>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
 
                     <div class="phones mb-3">
-                        <div class="mb-1 row">
-                            <label for="phone" class="col-sm-3 col-form-label">Phone</label>
-                            <div class="col-sm-5">
-                                <input type="text" class="form-control shadow-none" id="phone" value="" placeholder="Phone number" name="phone[]">
-                            </div>
-                            <a class="add-phone col-sm-1">
-                                +
-                            </a>
-                        </div>
+                        @foreach($contact->phones as $phone)
+                            @if($loop->first)
+                                <div class="mb-1 row">
+                                    <label for="phone" class="col-sm-3 col-form-label">Phone</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control shadow-none" id="phone" value="{{ $phone->phone }}" placeholder="00 36 12 345 6789" name="phone[]">
+                                    </div>
+                                    <a class="add-phone col-sm-1">
+                                        +
+                                    </a>
+                                </div>
+                            @else
+                                <div class="mb-1 row">
+                                    <label for="phone" class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control shadow-none" id="phone" value="{{ $phone->phone }}" placeholder="00 36 12 345 6789" name="phone[]">
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
 
                     <div class="mb-3 row">
                         <label for="username" class="col-sm-3 col-form-label">Image</label>
                         <div class="col-sm-6">
-                            <input type="file" class="form-control shadow-none" id="image" name="image">
+                            <input type="file" class="form-control shadow-none" id="image" name="image" accept="image/png, image/jpeg">
                         </div>
                     </div>
 
@@ -65,16 +99,16 @@
                         <div class="mb-2 row">
                             <label for="username" class="col-sm-3 col-form-label">Address</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control shadow-none" id="address" name="address" placeholder="1234 Main St">
+                                <input type="text" class="form-control shadow-none" id="address" name="address" value="{{ $contact->address->address }}" placeholder="1234 Main St">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="username" class="col-sm-3 col-form-label"></label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control shadow-none" id="image" name="image" placeholder="City">
+                                <input type="text" class="form-control shadow-none" id="image" name="city" value="{{ $contact->address->city }}" placeholder="City">
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control shadow-none" id="image" name="image" placeholder="Zip">
+                                <input type="text" class="form-control shadow-none" id="image" name="zip" value="{{ $contact->address->zip }}" placeholder="Zip">
                             </div>
                         </div>
                     </div>
@@ -84,7 +118,7 @@
                         <label for="username" class="col-sm-3 col-form-label">Mailing address</label>
                         <div class="col-sm-6">
                             <div class="form-check">
-                                <input class="form-check-input shadow-none" type="checkbox" checked="" value="" id="address-check">
+                                <input class="form-check-input shadow-none" type="checkbox" {{ $contact->address->mailing_address === null ?  "checked" : "" }}  value="" id="address-check" name="address_check">
                                 <label class="form-check-label" for="address-check">
                                     Same as address
                                 </label>
@@ -95,29 +129,27 @@
                         <div class="mb-2 row">
                             <label for="username" class="col-sm-3 col-form-label"></label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control shadow-none" id="address" name="address" placeholder="1234 Main St">
+                                <input type="text" class="form-control shadow-none" id="address" name="mailing_address" value="{{ $contact->address->mailing_address }}" placeholder="1234 Main St">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="username" class="col-sm-3 col-form-label"></label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control shadow-none" id="image" name="image" placeholder="City">
+                                <input type="text" class="form-control shadow-none" id="image" name="mailing_city" value="{{ $contact->address->mailing_city }}" placeholder="City">
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control shadow-none" id="image" name="image" placeholder="Zip">
+                                <input type="text" class="form-control shadow-none" id="image" name="mailing_zip" value="{{ $contact->address->mailing_zip }}" placeholder="Zip">
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-5 row">
                         <div class="col-3">
-                            <button class="save-btn btn btn-primary">Save</button>
+                            <button type="submit" class="save-btn btn btn-primary">Save</button>
                         </div>
-
                     </div>
-
-
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -147,6 +179,13 @@
             $(phones).append('' +
                 '<div class="mb-1 row"><label for="phone" class="col-sm-3 col-form-label"></label> <div class="col-sm-5"> <input type="text" class="form-control shadow-none" id="phone" value="" placeholder="Phone number" name="phone[]"> </div></div>');
         });
+
+        if($("#address-check").prop('checked')) {
+            $(".mailing-address").css("display","none");
+        }
+        else {
+            $(".mailing-address").css("display","block");
+        }
 
         $("#address-check").change(function() {
             if($("#address-check").prop('checked')) {

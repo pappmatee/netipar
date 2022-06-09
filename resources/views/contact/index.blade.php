@@ -14,6 +14,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/swal.css') }}">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <meta name="_token" content="{{ csrf_token() }}" />
 </head>
 <body>
     <div class="main container vh-100">
@@ -40,7 +42,7 @@
                             </thead>
                             <tbody>
                             @foreach($contacts as $contact)
-                                <tr>
+                                <tr id="contact-row-{{$contact->id}}">
                                     <td class="align-middle">
                                         <img class="user_image" src="{{ $contact->image ? asset('storage/'.$contact->image->file_name) : 'https://via.placeholder.com/64.png' }}">
                                     </td>
@@ -62,10 +64,10 @@
                                         <p class="address m-0">{{ $contact->address->mailing_zip.' '.$contact->address->mailing_city.' '.$contact->address->mailing_address }}</p>
                                     </td>
                                     <td class="align-middle text-end">
-                                        <a class="edit-icon me-2" href="#">
+                                        <a class="edit-contact me-2" href="{{ route('phonebook.edit', $contact->id) }}">
                                             <img src="{{ asset('icons/edit.svg') }}">
                                         </a>
-                                        <a class="delete-icon" href="#">
+                                        <a class="delete-contact" id="delete-contact" contact="{{ $contact->id }}" href="#">
                                             <img src="{{ asset('icons/trash-2.svg') }}">
                                         </a>
                                     </td>
@@ -79,14 +81,15 @@
         </div>
     </div>
 
+    <script src="{{ url('css/jquery/jquery.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    @if(Session::has('message'))
+    @if(Session::has('success'))
         <script>
             $(document).ready(function () {
                 swal({
-                    text: '{{ Session::get('message') }}',
+                    text: '{{ Session::get('success') }}',
                     icon: 'success',
                     buttons: false,
                     timer: 2000,
@@ -94,5 +97,61 @@
             });
         </script>
     @endif
+
+    <script>
+        $(document).on("click","#delete-contact", function (e) {
+            var contact_id = $(this).attr('contact');
+            console.log(contact_id);
+            swal('Are you sure you want to delete?', {
+                icon: 'error',
+                buttons: {
+                    cancel: {
+                        text: "No",
+                        value: null,
+                        visible: true,
+                        className: "btn shadow-none btn-vortex",
+                        dangerMode: true,
+                        closeModal: true,
+                    },
+                    confirm: {
+                        text: "Delete",
+                        value: null,
+                        visible: true,
+                        className: "confirm-delete btn shadow-none btn-vortex-danger",
+                        closeModal: false,
+                    }
+                },
+            });
+            $(document).on("click",".confirm-delete", function (e) {
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: '/destroy/' + contact_id,
+                    data: {id: contact_id},
+                    method: 'post',
+                    success: function(result) {
+                        $('#contact-row-' + contact_id).remove();
+                        swal('Deleted successfully', {
+                            icon: 'success',
+                            buttons: false,
+                            timer: 2000,
+                        });
+                    },
+                    error: function(result) {
+                        console.log(result);
+                        swal('Error occurred', {
+                            icon: 'error',
+                            buttons: false,
+                            timer: 2000,
+                        });
+                    },
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -108,21 +108,21 @@ body {
     color: #fff;
 }
 
-.phonebook tbody td .edit-icon,
-.phonebook tbody td .delete-icon {
+.phonebook tbody td .edit-contact,
+.phonebook tbody td .delete-contact {
     text-decoration: none;
 }
 
-.phonebook tbody td .edit-icon img,
-.phonebook tbody td .delete-icon img {
+.phonebook tbody td .edit-contact img,
+.phonebook tbody td .delete-contact img {
     width: 17px;
 }
 
-.phonebook tbody td .edit-icon img {
+.phonebook tbody td .edit-contact img {
     filter: invert(44%) sepia(56%) saturate(3442%) hue-rotate(219deg) brightness(100%) contrast(102%);
 }
 
-.phonebook tbody td .delete-icon img {
+.phonebook tbody td .delete-contact img {
     filter: invert(32%) sepia(46%) saturate(3663%) hue-rotate(326deg) brightness(102%) contrast(105%);
 }
 
@@ -170,4 +170,53 @@ body {
 
 .phonebook .body .save-btn {
     padding: 0.4rem 1.3rem;
+}
+
+
+.btn-vortex {
+    background-color: #282D36 !important;
+    border: 0 !important;
+    color: #FFF;
+    outline: none !important;
+}
+
+.btn-vortex:active,
+.btn-vortex:focus,
+.btn-vortex:focus-visible {
+    border: 0 !important;
+    outline: none !important;
+}
+
+.btn-vortex:hover, .btn-vortex.hover {
+    background-color: #2E353E !important;
+    border: 0 !important;
+    color: #FFF;
+    outline: none !important;
+}
+
+.btn-vortex-danger {
+    background-color: #C21807 !important;
+    border: 0 !important;
+    color: #FFF;
+    outline: none !important;
+}
+
+.btn-vortex-danger:active,
+.btn-vortex-danger:focus,
+.btn-vortex-danger:focus-visible {
+    border: 0 !important;
+    outline: none !important;
+}
+
+.btn-vortex-danger:hover,
+.btn-vortex-danger.hover {
+    background-color: #FF0000 !important;
+    border: 0 !important;
+    color: #FFF;
+    outline: none !important;
+}
+
+.btn-vortex.dark-2:hover,
+.btn-vortex.dark-2.hover {
+    background-color: #242830 !important;
 }
