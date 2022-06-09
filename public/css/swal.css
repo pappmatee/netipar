@@ -1,0 +1,35 @@
+.swal-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.swal-modal {
+  background-color: #1D2127;
+}
+
+.swal-title {
+  color: #fff;
+}
+
+.swal-text {
+  color: #fff;
+}
+
+.swal-icon--success:after, 
+.swal-icon--success:before {
+  background-color: #1D2127 !important;
+}
+
+.swal-icon--success__hide-corners {
+  background-color: #1D2127;
+  width: 7px !important;
+  height: 100px !important;
+  top: 4px !important;
+}
+
+.swal-icon--error {
+  border-color: #FF0000 !important;
+}
+
+.swal-icon--error__line {
+  background-color: #FF0000 !important;
+}

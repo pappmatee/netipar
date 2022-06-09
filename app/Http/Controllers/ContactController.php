@@ -67,7 +67,7 @@ class ContactController extends Controller
             ]);
         }
 
-        return redirect()->route('phonebook.index')->with('message', 'Contact has been added successfully');
+        return redirect()->route('phonebook.index')->with('success', 'Contact has been added successfully');
     }
 
     public function show($id)
