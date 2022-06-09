@@ -15,19 +15,19 @@ This repository contains a trial task for the netipar company, using these stack
 #
 
 ### Phonebook contact list
-![Screenshot](design/contacts.png)
+![Screenshot](design/contacts.jpg)
 
 ### Create a new contact
-![Screenshot](design/create.png)
+![Screenshot](design/create.jpg)
 
 ### Created contact
-![Screenshot](design/added.png)
+![Screenshot](design/added.jpg)
 
 ### Edit a contact
-![Screenshot](design/edit.png)
+![Screenshot](design/edit.jpg)
 
 ### Confirm deleting a contact
-![Screenshot](design/sure.png)
+![Screenshot](design/sure.jpg)
 
 ### Deleted contact
-![Screenshot](design/deleted.png)
+![Screenshot](design/deleted.jpg)
