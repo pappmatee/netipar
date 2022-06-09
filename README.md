@@ -1,6 +1,6 @@
 # Netipar Trial task
 This repository contains a trial task for the netipar company, using these stacks:
-- Laravel 8
+- Laravel 9
 - Bootstrap 5
 
 #
