@@ -14,5 +14,8 @@ This repository contains a trial task for the netipar company, using these stack
 
 #
 
-### Database Schema
-![Screenshot](db_schema.jpg)
+### Phonebook contact list
+![Screenshot](design/phonebook.png)
+
+### Create a new contact
+![Screenshot](design/create.png)
