@@ -25,7 +25,7 @@ class Contact extends Model
         return $this->hasOne(Image::class);
     }
 
-    public function addresses()
+    public function address()
     {
         return $this->hasOne(Address::class);
     }

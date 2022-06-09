@@ -55,8 +55,8 @@
                                         @endforeach
                                     </td>
                                     <td class="align-middle">
-                                        <p class="address m-0">{{ $contact->addresses->zip.' '.$contact->addresses->city.' '.$contact->addresses->address }}</p>
-                                        <p class="address m-0">{{ $contact->addresses->mailing_zip.' '.$contact->addresses->mailing_city.' '.$contact->addresses->mailing_address }}</p>
+                                        <p class="address m-0">{{ $contact->address->zip.' '.$contact->address->city.' '.$contact->address->address }}</p>
+                                        <p class="address m-0">{{ $contact->address->mailing_zip.' '.$contact->address->mailing_city.' '.$contact->address->mailing_address }}</p>
                                     </td>
                                     <td class="align-middle text-end">
                                         <a class="edit-icon me-2" href="#">

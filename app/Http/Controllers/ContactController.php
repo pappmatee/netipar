@@ -53,14 +53,14 @@ class ContactController extends Controller
             $contact->image()->save($imageObj);
         }
 
-        $contact->addresses()->create([
+        $contact->address()->create([
             'address' => $request->get('address'),
             'city' => $request->get('city'),
             'zip' => $request->get('zip')
         ]);
 
         if($request->has('address_check')) {
-            $contact->addresses()->create([
+            $contact->address()->create([
                 'mailing_address' => $request->get('mailing_address'),
                 'mailing_city' => $request->get('mailing_city'),
                 'mailing_zip' => $request->get('mailing_zip')
