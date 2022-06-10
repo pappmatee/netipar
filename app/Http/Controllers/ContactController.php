@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContactRequest;
+use App\Http\Requests\UpdateContactRequest;
 use App\Models\Contact;
 use App\Models\Email;
 use App\Models\Image;
@@ -82,7 +83,7 @@ class ContactController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(UpdateContactRequest $request, $id)
     {
         $contact = Contact::find($id);
 
